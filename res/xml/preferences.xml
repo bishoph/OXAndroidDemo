@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="org.bishoph.oxdemo.preferences">
+  
+    <EditTextPreference
+            android:key="url" 
+            android:title="@string/pref_url_title"
+            android:summary="@string/pref_url_summary"
+            android:defaultValue="https://www.ox.io/"           
+            android:singleLine = "true"/>
+
+
+       <EditTextPreference
+            android:key="login"
+            android:title="@string/pref_user_login_title"
+            android:summary="@string/pref_user_login_summary"
+            android:defaultValue="user@domain.com"
+            android:singleLine = "true"/>
+    
+       <EditTextPreference
+            android:key="password"
+            android:title="@string/pref_user_password_title"
+            android:summary="@string/pref_user_password_summary"
+            android:defaultValue="12345"
+            android:singleLine = "true"
+            android:inputType="textPassword" />
+       
+</PreferenceScreen>

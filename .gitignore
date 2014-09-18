@@ -1,0 +1,19 @@
+# git exclude
+
+.project
+.metadata
+.classpath
+.settings/
+.loadpath
+*.launch
+bin/
+gen/
+*.apk
+*.ap_
+*.class
+*.tmp
+*.bak
+local.properties
+
+
+
