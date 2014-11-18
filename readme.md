@@ -10,9 +10,9 @@ Features:
   * Show all tasks in listview
   * Delete single task via swipe gesture from listview
   
-Please note that you need an Open-Xchange account (you
-can create one at https://www.ox.io/). Once started simple
-go to the settings and enter valid user/pass combination as
+Please note that you need an Open-Xchange account. You can request
+a demo account or use any existing account you already have.
+Once started simple go to the settings and enter valid user/pass combination as
 well as the server URL and have fun.
 
 Visit https://dev.ox.io to find additional information
