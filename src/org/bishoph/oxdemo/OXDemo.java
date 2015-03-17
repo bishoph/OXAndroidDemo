@@ -118,13 +118,14 @@ public class OXDemo extends Activity implements
 		prefs.registerOnSharedPreferenceChangeListener(this);
 
 		listentries = new ListEntries();
-		listview = (ListView) findViewById(R.id.listView1);	
-		
+		listview = (ListView) findViewById(R.id.listView1);
+
 		listviewarray = new ArrayList<String>();
 		listviewarray.add("Loading ... please wait");
-	
-		listviewadapter = new CustomArrayAdapter(this, R.layout.mysimplelistitem, listviewarray);
-		
+
+		listviewadapter = new CustomArrayAdapter(this,
+				R.layout.mysimplelistitem, listviewarray);
+
 		listview.setAdapter(listviewadapter);
 
 		SwipeDismissListViewTouchListener touchListener = new SwipeDismissListViewTouchListener(
@@ -134,7 +135,7 @@ public class OXDemo extends Activity implements
 						for (int position : reverseSortedPositions) {
 							Log.v("OXDemo", "Preparing for deletion "
 									+ listviewadapter.getItem(position));
-							removeTask(position);							
+							removeTask(position);
 						}
 						listviewadapter.notifyDataSetChanged();
 					}
@@ -158,8 +159,6 @@ public class OXDemo extends Activity implements
 		// are available.
 		delayedHide(100);
 	}
-
-
 
 	Handler mHideHandler = new Handler();
 	Runnable mHideRunnable = new Runnable() {
@@ -215,11 +214,13 @@ public class OXDemo extends Activity implements
 		Log.v("OXDemo", "Got JSON Object from AsyncTask ... ready for parsing "
 				+ jsonobject);
 		try {
-			String sessionid = jsonobject.getString(SESSIONID);
-			Log.v("OXDemo", "Sessionid = " + sessionid);
-			this.sessionid = sessionid;
-			// We can not continue to work with the OX API
-			getTaskStandardFolder();
+			if (jsonobject != null) {
+				String sessionid = jsonobject.getString(SESSIONID);
+				Log.v("OXDemo", "Sessionid = " + sessionid);
+				this.sessionid = sessionid;
+				// We can not continue to work with the OX API
+				getTaskStandardFolder();
+			}
 
 		} catch (JSONException e) {
 			Log.e("OXDemo", e.getMessage());
@@ -261,11 +262,15 @@ public class OXDemo extends Activity implements
 			try {
 				// {"data":[[24,"testtask 1234"]],"timestamp":1408961031592}
 				JSONArray data = jsonobject.getJSONArray(DATA);
-				if (data.length() > 0) {
-					listviewarray.remove(0); // Remove "Loading info"
+				listviewarray.remove(0); // Remove "Loading info"
+				if (data.length() == 0) {
+					listviewarray.add("No Items!");
+					listviewadapter.notifyDataSetChanged();
 				}
+				Log.v("OXDemo", ">>>> " + data);
 				for (int i = 0; i < data.length(); i++) {
 					JSONArray tasks = (JSONArray) data.get(i);
+					Log.v("OXDemo", ">>>> " + tasks);
 					for (int a = 0; a < tasks.length() / 2; a = a + 2) {
 						int object_id = tasks.getInt(a);
 						String task_title = tasks.getString(a + 1);
@@ -388,7 +393,7 @@ public class OXDemo extends Activity implements
 	}
 
 	/* ---------- Menu -> Settings ----------- */
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
