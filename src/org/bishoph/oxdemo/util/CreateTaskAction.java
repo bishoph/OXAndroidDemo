@@ -68,7 +68,7 @@ public class CreateTaskAction extends AsyncTask<Object, Object, JSONObject> {
 			jsonobject.put("folder_id", folder_id); 
 			jsonobject.put("title", title);
 			jsonobject.put("status", 1);
-			jsonobject.put("priority", 0);
+			jsonobject.put("priority", 1);
 			jsonobject.put("percent_completed", 0);
 			jsonobject.put("recurrence_type", 0);
 			jsonobject.put("private_flag", false);
